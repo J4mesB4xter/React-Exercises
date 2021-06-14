@@ -1,8 +1,8 @@
 const Pet = () => {
   return React.createElement("div", {}, [
     React.createElement("h2", {}, "Bandit"),
-    React.createElement("h3", {}, "Amber"), 
-    React.createElement("h3", {}, "Mia"),
+    React.createElement("h3", {}, "Cat"), 
+    React.createElement("h3", {}, "MOOOOO"),
   ])
 }
 
