@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/J4mesB4xter/React-Exercises/issues"
   },
-  "homepage": "https://github.com/J4mesB4xter/React-Exercises#readme"
+  "homepage": "https://github.com/J4mesB4xter/React-Exercises#readme",
+  "devDependencies": {
+    "prettier": "^2.3.1"
+  }
 }
