@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SearchParams from './SearchParams';
 import Pet from './Pet'
 
 //Raw REACT
@@ -16,10 +17,11 @@ const App = () => {
   return(
     <div>
       <h1>Adopt Me!</h1>
-      <Pet name="Mia" animal="Cat" type="wObBlY" />
+      <SearchParams />
+      {/* <Pet name="Mia" animal="Cat" type="wObBlY" />
       <Pet name="Bandit" animal="Cat" type="MOOOO" />
-      <Pet name="Amber" animal="Cat" type="CHoNK" />
+      <Pet name="Amber" animal="Cat" type="CHoNK" /> */}
     </div>
   )
 }
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(<App/>, document.getElementById("root"));
