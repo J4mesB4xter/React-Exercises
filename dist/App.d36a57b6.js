@@ -30775,7 +30775,52 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-jsx-runtime.development.js');
 }
-},{"./cjs/react-jsx-runtime.development.js":"../node_modules/react/cjs/react-jsx-runtime.development.js"}],"SearchParams.js":[function(require,module,exports) {
+},{"./cjs/react-jsx-runtime.development.js":"../node_modules/react/cjs/react-jsx-runtime.development.js"}],"Pet.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _jsxRuntime = require("react/jsx-runtime");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//Raw REACT
+// const Pet = (props) => {
+//   return React.createElement("div", {}, [
+//     React.createElement("h2", {}, props.name),
+//     React.createElement("h3", {}, props.animal),
+//     React.createElement("h3", {}, props.type),
+//   ]);
+// };
+const Pet = () => {
+  return (
+    /*#__PURE__*/
+    (0, _jsxRuntime.jsxs)("div", {
+      children: [
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)("h2", {
+        children: props.name
+      }),
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)("h3", {
+        children: props.animal
+      }),
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)("h3", {
+        children: props.breed
+      })]
+    })
+  );
+};
+
+var _default = Pet;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"SearchParams.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30785,19 +30830,35 @@ exports.default = void 0;
 
 var _react = require("react");
 
+var _Pet = _interopRequireDefault(require("./Pet"));
+
 var _jsxRuntime = require("react/jsx-runtime");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const SearchParams = () => {
   const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
   const [location, setLocation] = (0, _react.useState)("Tulsa, OK");
   const [animal, setAnimal] = (0, _react.useState)("");
   const [breed, setBreed] = (0, _react.useState)("");
+  const [pets, setPets] = (0, _react.useState)([]);
   const BREEDS = [];
+  (0, _react.useEffect)(() => {
+    requestPets();
+  }, [animal]);
+
+  async function requestPets() {
+    const res = await fetch(`http://pets-v2.dev-apis.com/petsanimal=${animal}&location=${location}&breed=${breed}`);
+    const json = await res.json();
+    console.log(json);
+    setPets(json.pets);
+  }
+
   return (
     /*#__PURE__*/
-    (0, _jsxRuntime.jsx)("div", {
+    (0, _jsxRuntime.jsxs)("div", {
       classname: "search-params",
-      children:
+      children: [
       /*#__PURE__*/
       (0, _jsxRuntime.jsxs)("form", {
         children: [
@@ -30857,59 +30918,20 @@ const SearchParams = () => {
         (0, _jsxRuntime.jsx)("button", {
           children: "Submit"
         })]
-      })
+      }), pets.map(pet =>
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)(_Pet.default, {
+        name: pet.name,
+        animal: pet.animal,
+        breed: pet.breed
+      }, pet.id))]
     })
   );
 };
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"Pet.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _jsxRuntime = require("react/jsx-runtime");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//Raw REACT
-// const Pet = (props) => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h2", {}, props.name),
-//     React.createElement("h3", {}, props.animal),
-//     React.createElement("h3", {}, props.type),
-//   ]);
-// };
-const Pet = () => {
-  return (
-    /*#__PURE__*/
-    (0, _jsxRuntime.jsxs)("div", {
-      children: [
-      /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h2", {
-        children: props.name
-      }),
-      /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h3", {
-        children: props.animal
-      }),
-      /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h3", {
-        children: props.breed
-      })]
-    })
-  );
-};
-
-var _default = Pet;
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Pet":"Pet.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30979,7 +31001,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60855" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
