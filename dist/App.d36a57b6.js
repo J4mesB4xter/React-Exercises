@@ -30788,7 +30788,11 @@ var _react = require("react");
 var _jsxRuntime = require("react/jsx-runtime");
 
 const SearchParams = () => {
+  const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
   const [location, setLocation] = (0, _react.useState)("Tulsa, OK");
+  const [animal, setAnimal] = (0, _react.useState)("");
+  const [breed, setBreed] = (0, _react.useState)("");
+  const BREEDS = [];
   return (
     /*#__PURE__*/
     (0, _jsxRuntime.jsx)("div", {
@@ -30807,6 +30811,46 @@ const SearchParams = () => {
             onChange: e => setLocation(e.target.value),
             value: location,
             placeholder: "Location"
+          })]
+        }),
+        /*#__PURE__*/
+        (0, _jsxRuntime.jsxs)("label", {
+          htmlFor: "animal",
+          children: ["Animal",
+          /*#__PURE__*/
+          (0, _jsxRuntime.jsxs)("select", {
+            id: "animal",
+            value: animal,
+            onChange: e => setAnimal(e.target.value),
+            onBlur: e => setAnimal(e.target.value),
+            children: [
+            /*#__PURE__*/
+            (0, _jsxRuntime.jsx)("option", {}), ANIMALS.map(animal =>
+            /*#__PURE__*/
+            (0, _jsxRuntime.jsx)("option", {
+              value: animal,
+              children: animal
+            }, animal))]
+          })]
+        }),
+        /*#__PURE__*/
+        (0, _jsxRuntime.jsxs)("label", {
+          htmlFor: "breed",
+          children: ["Breed",
+          /*#__PURE__*/
+          (0, _jsxRuntime.jsxs)("select", {
+            id: "breed",
+            value: breed,
+            onChange: e => setBreed(e.target.value),
+            onBlur: e => setBreed(e.target.value),
+            children: [
+            /*#__PURE__*/
+            (0, _jsxRuntime.jsx)("option", {}), BREEDS.map(breed =>
+            /*#__PURE__*/
+            (0, _jsxRuntime.jsx)("option", {
+              value: breed,
+              children: breed
+            }, breed))]
           })]
         }),
         /*#__PURE__*/
@@ -30935,7 +30979,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57498" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60855" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
