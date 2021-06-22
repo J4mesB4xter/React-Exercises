@@ -24,7 +24,7 @@ const SearchParams = () => {
   }
   
   return (
-    <div classname="search-params">
+    <div className="search-params">
       <form
         onSubmit={e => {
           e.preventDefault();

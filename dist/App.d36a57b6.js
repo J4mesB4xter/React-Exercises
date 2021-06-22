@@ -30950,7 +30950,7 @@ const SearchParams = () => {
   return (
     /*#__PURE__*/
     (0, _jsxRuntime.jsxs)("div", {
-      classname: "search-params",
+      className: "search-params",
       children: [
       /*#__PURE__*/
       (0, _jsxRuntime.jsxs)("form", {
@@ -31029,27 +31029,20 @@ exports.default = _default;
 },{"react":"../node_modules/react/index.js","./Results":"Results.js","./useBreedList":"useBreedList.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _SearchParams = _interopRequireDefault(require("./SearchParams"));
 
-var _Pet = _interopRequireDefault(require("./Pet"));
-
 var _jsxRuntime = require("react/jsx-runtime");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//Raw REACT
-// const App = () => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h1", {}, "Adopt Me!"),
-//     React.createElement(Pet, { name: "Mia", animal: "Cat", type: "WOBBLY" }),
-//     React.createElement(Pet, { name: "Bandit", animal: "Cat", type: "MOOOOO" }),
-//     React.createElement(Pet, { name: "Amber", animal: "Cat", type: "CHoNK" }),
-//   ]);
-// };
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 const App = () => {
   return (
     /*#__PURE__*/
@@ -31067,8 +31060,12 @@ const App = () => {
 
 _reactDom.default.render(
 /*#__PURE__*/
-(0, _jsxRuntime.jsx)(App, {}), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./SearchParams":"SearchParams.js","./Pet":"Pet.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _jsxRuntime.jsx)(_react.StrictMode, {
+  children:
+  /*#__PURE__*/
+  (0, _jsxRuntime.jsx)(App, {})
+}), document.getElementById("root"));
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./SearchParams":"SearchParams.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -31096,7 +31093,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49267" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
