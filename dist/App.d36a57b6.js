@@ -30783,36 +30783,50 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
-
 var _jsxRuntime = require("react/jsx-runtime");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const Pet = ({
+  name,
+  animal,
+  breed,
+  images,
+  location,
+  id
+}) => {
+  let hero = 'http://pets-images.dev-apis.com/pets/none.jpg';
 
-//Raw REACT
-// const Pet = (props) => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h2", {}, props.name),
-//     React.createElement("h3", {}, props.animal),
-//     React.createElement("h3", {}, props.type),
-//   ]);
-// };
-const Pet = () => {
+  if (images.length) {
+    hero = images[0];
+  }
+
   return (
     /*#__PURE__*/
-    (0, _jsxRuntime.jsxs)("div", {
+    (0, _jsxRuntime.jsxs)("a", {
+      href: `/details/${id}`,
+      className: "pet",
       children: [
       /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h2", {
-        children: props.name
+      (0, _jsxRuntime.jsx)("div", {
+        className: "image-container",
+        children:
+        /*#__PURE__*/
+        (0, _jsxRuntime.jsx)("img", {
+          src: hero,
+          alt: name
+        })
       }),
       /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h3", {
-        children: props.animal
-      }),
-      /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("h3", {
-        children: props.breed
+      (0, _jsxRuntime.jsxs)("div", {
+        className: "info",
+        children: [
+        /*#__PURE__*/
+        (0, _jsxRuntime.jsx)("h1", {
+          children: name
+        }),
+        /*#__PURE__*/
+        (0, _jsxRuntime.jsx)("h2", {
+          children: `${animal} - ${breed} - ${location}`
+        })]
       })]
     })
   );
@@ -30820,7 +30834,48 @@ const Pet = () => {
 
 var _default = Pet;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"useBreedList.js":[function(require,module,exports) {
+},{"react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"Results.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _Pet = _interopRequireDefault(require("./Pet"));
+
+var _jsxRuntime = require("react/jsx-runtime");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Results = ({
+  pets
+}) => {
+  return (
+    /*#__PURE__*/
+    (0, _jsxRuntime.jsx)("div", {
+      className: "search",
+      children: !pets.length ?
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)("h2", {
+        children: "No Pets Found"
+      }) : pets.map(pet =>
+      /*#__PURE__*/
+      (0, _jsxRuntime.jsx)(_Pet.default, {
+        animal: pet.animal,
+        name: pet.name,
+        breed: pet.breed,
+        images: pet.images,
+        location: `${pet.city}, ${pet.id}`,
+        id: pet.id
+      }, pet.id))
+    })
+  );
+};
+
+var _default = Results;
+exports.default = _default;
+},{"./Pet":"Pet.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"useBreedList.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30866,7 +30921,7 @@ exports.default = void 0;
 
 var _react = require("react");
 
-var _Pet = _interopRequireDefault(require("./Pet"));
+var _Results = _interopRequireDefault(require("./Results"));
 
 var _useBreedList = _interopRequireDefault(require("./useBreedList"));
 
@@ -30886,7 +30941,7 @@ const SearchParams = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestPets() {
-    const res = await fetch(`http://pets-v2.dev-apis.com/petsanimal=${animal}&location=${location}&breed=${breed}?`);
+    const res = await fetch(`http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`);
     const json = await res.json();
     console.log(json);
     setPets(json.pets);
@@ -30899,6 +30954,10 @@ const SearchParams = () => {
       children: [
       /*#__PURE__*/
       (0, _jsxRuntime.jsxs)("form", {
+        onSubmit: e => {
+          e.preventDefault();
+          requestPets();
+        },
         children: [
         /*#__PURE__*/
         (0, _jsxRuntime.jsxs)("label", {
@@ -30956,20 +31015,18 @@ const SearchParams = () => {
         (0, _jsxRuntime.jsx)("button", {
           children: "Submit"
         })]
-      }), pets.map(pet =>
+      }),
       /*#__PURE__*/
-      (0, _jsxRuntime.jsx)(_Pet.default, {
-        name: pet.name,
-        animal: pet.animal,
-        breed: pet.breed
-      }, pet.id))]
+      (0, _jsxRuntime.jsx)(_Results.default, {
+        pets: pets
+      })]
     })
   );
 };
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./Pet":"Pet.js","./useBreedList":"useBreedList.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Results":"Results.js","./useBreedList":"useBreedList.js","react/jsx-runtime":"../node_modules/react/jsx-runtime.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -31039,7 +31096,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64145" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49267" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
